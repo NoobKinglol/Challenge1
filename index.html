@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* 初始背景为渐变蓝色 */
             background-size: cover;
             background-position: center;
             color: #fff;
@@ -20,8 +20,13 @@
             align-items: center;
             overflow: hidden;
             position: relative;
-            transition: background-color 0.5s;
+            transition: background 0.5s ease-in-out; /* 添加背景颜色过渡效果 */
         }
+
+        body.buff-active {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* 触发Buff后的背景为渐变粉色 */
+        }
+
         .container {
             max-width: 600px;
             background-color: rgba(0, 0, 0, 0.7);
@@ -31,24 +36,29 @@
             position: relative;
             z-index: 2;
         }
+
         h1 {
             color: #ff6f61;
             font-size: 2.5em;
             margin-bottom: 20px;
         }
+
         .question {
             font-size: 1.5em;
             margin: 20px 0;
             color: #fff;
         }
+
         .hint {
             color: #ccc;
             font-size: 1em;
             margin: 10px 0;
         }
+
         .input-box {
             margin: 20px 0;
         }
+
         .input-box input {
             width: 80%;
             padding: 10px;
@@ -57,6 +67,7 @@
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.8);
         }
+
         .button {
             background-color: #ff6f61;
             color: #fff;
@@ -67,24 +78,29 @@
             font-size: 1em;
             transition: background-color 0.3s;
         }
+
         .button:hover {
             background-color: #ff4a3d;
         }
+
         .score {
             font-size: 1.5em;
             margin: 20px 0;
             color: #ff6f61;
         }
+
         .reward {
             font-size: 2em;
             margin: 20px 0;
             color: #ff6f61;
         }
+
         .timer {
             font-size: 1.5em;
             color: #ff6f61;
             margin: 10px 0;
         }
+
         .results {
             text-align: left;
             margin-top: 20px;
@@ -94,9 +110,11 @@
             padding: 10px;
             border-radius: 5px;
         }
+
         .results div {
             margin: 10px 0;
         }
+
         /* 爱心特效 */
         .heart {
             position: absolute;
@@ -106,10 +124,12 @@
             animation: fall 5s linear infinite;
             z-index: 1;
         }
+
         @keyframes fall {
             0% { top: -10%; transform: translateX(0); }
             100% { top: 110%; transform: translateX(50px); }
         }
+
         /* 火焰特效 */
         .fire {
             position: absolute;
@@ -120,14 +140,13 @@
             animation: burn 0.5s linear;
             z-index: 3;
         }
+
         @keyframes burn {
             0% { transform: scale(1); opacity: 1; }
             100% { transform: scale(3); opacity: 0; }
         }
+
         /* Buff激活特效 */
-        .buff-active {
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-        }
         .buff-status {
             font-size: 1.2em;
             color: #ff69b4;
@@ -242,13 +261,13 @@
                 gameState.combo++;
                 if (gameState.combo === 3) {
                     gameState.doubleScore = true;
-                    document.body.classList.add("buff-active");
+                    document.body.classList.add("buff-active"); // 添加buff-active类，切换背景颜色
                     alert("✨ 情侣Buff激活！分数翻倍！");
                 }
             } else {
                 gameState.combo = 0;
                 gameState.doubleScore = false;
-                document.body.classList.remove("buff-active");
+                document.body.classList.remove("buff-active"); // 移除buff-active类，恢复初始背景颜色
                 buffStatusElement.textContent = "";
             }
 
@@ -365,5 +384,3 @@
     </script>
 </body>
 </html>
-
-
